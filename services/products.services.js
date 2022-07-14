@@ -1,5 +1,6 @@
 const faker = require('faker')
 
+const sequelize = require('../libs/sequelize')
 class ProducsService {
 
   constructor() {
@@ -29,12 +30,15 @@ class ProducsService {
   }
 
   async find() {
-    // const name = this.getTodo()  //esto genera un error
-    return new Promise ((resolve, reject) => {
-      setTimeout(() => {
-        resolve(this.products)
-      }, 3000)
-    })
+    const query = 'SELECT * FROM fst_users'
+    const [data] = await sequelize.query(query)
+    return data
+    // const name = this.getTodo()  //esta linea genera un error, simulado
+    // return new Promise ((resolve, reject) => {
+    //   setTimeout(() => {
+    //     resolve(this.products)
+    //   }, 3000)
+    // })
   }
 
   async findOne(id) {

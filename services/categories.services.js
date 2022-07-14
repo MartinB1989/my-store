@@ -1,5 +1,5 @@
 const faker = require('faker')
-
+const { models } = require('../libs/sequelize')
 class CategoriesService {
 
   constructor() {
@@ -8,25 +8,27 @@ class CategoriesService {
   }
 
   async generete() {
-    const limit = 10
-    for (let i = 0; i < limit; i++) {
-      this.categories.push({
-        id: faker.datatype.uuid(),
-        category: faker.commerce.department()
-      })
-    }
+    // const limit = 10
+    // for (let i = 0; i < limit; i++) {
+    //   this.categories.push({
+    //     id: faker.datatype.uuid(),
+    //     category: faker.commerce.department()
+    //   })
+    // }
   }
 
-  async create() {
-
+  async create(data) {
+    return data
   }
 
   async find() {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(this.categories)
-      }, 5000)
-    })
+    const response = await models.Categories.findAll()
+    return response
+    // return new Promise((resolve, reject) => {
+    //   setTimeout(() => {
+    //     resolve(this.categories)
+    //   }, 5000)
+    // })
   }
 
   async findOne(id) {
