@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const routerApi = require('./routes');
 
-const {logErrors, errorHandler, boomErrorHandler} = require('./middlewares/error.handler');
+const {logErrors, errorHandler, boomErrorHandler, ormErrorHandler} = require('./middlewares/error.handler');
 const { options } = require('./routes/products.router');
 
 const app = express()
@@ -28,6 +28,7 @@ app.use(express.json()) //Para poder enviar datos en formato json a través del 
 routerApi(app)
 
 app.use(logErrors)
+app.use(ormErrorHandler)
 app.use(boomErrorHandler)
 app.use(errorHandler)
 

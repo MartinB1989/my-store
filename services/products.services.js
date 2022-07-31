@@ -2,6 +2,7 @@
 const faker = require('faker')
 const boom = require('@hapi/boom')
 const sequelize = require('../libs/sequelize')
+
 class ProducsService {
 
   constructor() {
@@ -31,7 +32,7 @@ class ProducsService {
   }
 
   async find() {
-    const query = 'SELECT * FROM fst_users'
+    const query = 'SELECT * FROM users'
     const [data] = await sequelize.query(query)
     return data
     // const name = this.getTodo()  //esta linea genera un error, simulado
